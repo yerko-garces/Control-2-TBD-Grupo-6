@@ -3,13 +3,13 @@ package com.Grupo6.Control2.models;
 public class Usuario {
     private Long id_usuario;
     private String nombre_usuario;
-    private String contraseña;
+    private String contrasena;
 
 
-    public Usuario(Long id_usuario, String nombre_usuario, String contraseña) {
+    public Usuario(Long id_usuario, String nombre_usuario, String contrasena) {
         this.id_usuario = id_usuario;
         this.nombre_usuario = nombre_usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public Long getId_usuario() {
@@ -28,11 +28,11 @@ public class Usuario {
         this.nombre_usuario = nombre_usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
