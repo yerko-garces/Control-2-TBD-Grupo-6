@@ -8,13 +8,13 @@ import org.sql2o.Sql2o;
 @Configuration
 public class DatabaseContext {
 
-    @Value("${spring.datasource.url}")
+    @Value("jdbc:postgresql://localhost:5432/control_2_TBD")
     private String dbUrl;
 
-    @Value("${spring.datasource.username}")
+    @Value("postgres")
     private String dbUser;
 
-    @Value("${spring.datasource.password}")
+    @Value("psw123")
     private String dbPass;
 
     @Bean
