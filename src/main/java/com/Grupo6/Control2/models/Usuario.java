@@ -12,6 +12,9 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public Usuario() {
+    }
+
     public Long getId_usuario() {
         return id_usuario;
     }
