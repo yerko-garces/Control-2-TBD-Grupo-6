@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -51,11 +54,10 @@ public class TareaRepositoryImp implements  TareaRepository{
     }
 
     @Override
-    public List<Tarea> todasLasTareas() {
+    public ArrayList<Tarea> todasLasTareas() {
         try(Connection conn = sql2o.open()){
             String sql = "SELECT * FROM Tarea";
-            List<Tarea> tareas = conn.createQuery(sql).executeAndFetch(Tarea.class);
-            return tareas;
+            return (ArrayList<Tarea>) conn.createQuery(sql).executeAndFetch(Tarea.class);
         }catch (Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -70,6 +72,32 @@ public class TareaRepositoryImp implements  TareaRepository{
                     .executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public Tarea obtenerTareaPorId(Long id_tarea) {
+        try(Connection conn = sql2o.open()){
+            String sql = "SELECT * FROM Tarea WHERE id_tarea=:id_tarea";
+            return conn.createQuery(sql)
+                    .addParameter("id_tarea", id_tarea)
+                    .executeAndFetchFirst(Tarea.class);
+    }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Tarea> obtenerTareasPorUsuario(Long id_usuario) {
+        try(Connection conn = sql2o.open()){
+            String sql = "SELECT * FROM Tarea WHERE id_usuario=:id_usuario";
+            return (ArrayList<Tarea>) conn.createQuery(sql)
+                    .addParameter("id_usuario", id_usuario)
+                    .executeAndFetch(Tarea.class);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

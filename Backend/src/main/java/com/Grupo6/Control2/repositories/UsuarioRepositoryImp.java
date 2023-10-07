@@ -65,11 +65,37 @@ public class UsuarioRepositoryImp implements UsuarioRepository{
     }
 
     @Override
-    public List<Usuario> getUsuarios() {
+    public ArrayList<Usuario> getUsuarios() {
         try (Connection conn = sql2o.open()) {
             String sql = "SELECT * FROM Usuario";
             List<Usuario> usuarios = conn.createQuery(sql).executeAndFetch(Usuario.class);
-            return usuarios;
+            return (ArrayList<Usuario>) usuarios;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario getUsuario(Long id) {
+        try (Connection conn = sql2o.open()) {
+            String sql = "SELECT * FROM Usuario WHERE id_usuario=:id_usuario";
+            return conn.createQuery(sql)
+                    .addParameter("id_usuario", id)
+                    .executeAndFetchFirst(Usuario.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Usuario getUsuarioPorNombre(String nombre) {
+        try (Connection conn = sql2o.open()) {
+            String sql = "SELECT * FROM Usuario WHERE nombre_usuario=:nombre_usuario";
+            return conn.createQuery(sql)
+                    .addParameter("nombre_usuario", nombre)
+                    .executeAndFetchFirst(Usuario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

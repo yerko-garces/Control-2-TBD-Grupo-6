@@ -2,6 +2,8 @@ package com.Grupo6.Control2.repositories;
 
 import com.Grupo6.Control2.models.Tarea;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TareaRepository {
@@ -9,7 +11,10 @@ public interface TareaRepository {
 
     public String actualizarTarea(Tarea tarea, Long id);
 
-    public List<Tarea> todasLasTareas();
+    public ArrayList<Tarea> todasLasTareas();
 
     public void borrarTarea(Long id);
+
+    public Tarea obtenerTareaPorId(Long id_tarea);
+    public ArrayList<Tarea> obtenerTareasPorUsuario(Long id_usuario);
 }
