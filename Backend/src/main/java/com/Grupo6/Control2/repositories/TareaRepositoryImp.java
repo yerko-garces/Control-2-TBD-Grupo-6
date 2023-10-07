@@ -16,8 +16,8 @@ public class TareaRepositoryImp implements  TareaRepository{
     @Override
     public Tarea crearTarea(Tarea tarea) {
         try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Tarea (id_tarea, titulo, descripcion, vencimiento, id_usuario" +
-                    "VALUES (:id_tarea, :titulo, :descripcion, :vencimiento, :id_usuario";
+            String sql = "INSERT INTO Tarea (id_tarea, titulo, descripcion, vencimiento, id_usuario)" +
+                    "VALUES (:id_tarea, :titulo, :descripcion, :vencimiento, :id_usuario)";
             conn.createQuery(sql, true)
                     .addParameter("id_tarea", tarea.getId_tarea())
                     .addParameter("titulo", tarea.getTitulo())
@@ -63,7 +63,7 @@ public class TareaRepositoryImp implements  TareaRepository{
     }
 
     @Override
-    public void borrarTarea(String id) {
+    public void borrarTarea(Long id) {
         try(Connection conn = sql2o.open()){
             conn.createQuery("DELETE FROM Tarea WHERE id_tarea=:id_tarea")
                     .addParameter("id_tarea", id)

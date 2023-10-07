@@ -11,5 +11,5 @@ public interface TareaRepository {
 
     public List<Tarea> todasLasTareas();
 
-    public void borrarTarea(String id);
+    public void borrarTarea(Long id);
 }
