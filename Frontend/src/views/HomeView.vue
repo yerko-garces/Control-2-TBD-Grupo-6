@@ -1,3 +1,41 @@
+<script>
+import axios from 'axios';
+export default {
+  name: 'HomeView',
+  data() {
+    return {
+      usuario: '',
+      password: '',
+      error: '',
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const res = await axios({
+          method: 'POST',
+          url: 'http://localhost:8090/Usuario/Login',
+          data: {
+            nombre_usuario: this.usuario,
+            contrasena: this.password,
+          },
+
+        });
+        console.log(res.data.status);
+        if (res.data.status === 'success') {
+          console.log(res);
+          alert('Logged in successfully!');
+          this.$router.push('/about');
+        }
+      } catch (err) {
+        this.error = err.response.data;
+        alert(this.error);
+      }
+    },
+  },
+};
+
+</script>
 <template>
   <div>
     <v-card
@@ -10,10 +48,10 @@
 
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
-          hide-details="auto"
-          label="Direccion de correo electronico"
-          placeholder="Introduzca su correo"
-          type="email"
+          label="Nombre de usuario"
+          placeholder="Introduzca su nombre de usuario"
+          type="input"
+          v-model="usuario"
         ></v-text-field>
       </v-responsive>
 
@@ -30,9 +68,10 @@
 
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
-          label="Contraseña"
-          type="input"
-          placeholder="Introduzca su contraseña"
+            label="Contraseña"
+            placeholder="Introduzca su contraseña"
+            type="input"
+            v-model="password"
         ></v-text-field>
       </v-responsive>
 
@@ -42,9 +81,14 @@
         color="green"
         size="large"
         variant="tonal"
+        @click="login"
       >
-        <RouterLink to="/about">INICIAR SESION</RouterLink>
+        INICIAR SESIÓN
       </v-btn>
+
+
+
+
 
       <v-card-text class="text-center">
         <a

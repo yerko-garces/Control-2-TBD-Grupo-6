@@ -10,6 +10,7 @@ import org.sql2o.Sql2o;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UsuarioRepositoryImp implements UsuarioRepository{

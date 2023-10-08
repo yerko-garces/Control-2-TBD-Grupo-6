@@ -1,4 +1,4 @@
-package com.Grupo6.Control2.models.Controllers;
+package com.Grupo6.Control2.Controllers;
 
 import com.Grupo6.Control2.Services.TareaService;
 import com.Grupo6.Control2.models.Tarea;
