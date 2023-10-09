@@ -10,8 +10,6 @@
           />
   
         <v-btn variant="plain" to="/about">Inicio</v-btn>
-        <v-btn variant="plain" to="/tarea">Tarea</v-btn>
-        <v-btn variant="plain" to="/historial">Historial</v-btn>
         <v-spacer></v-spacer>
         <v-btn variant="plain" to="/">
           Cerrar Sesión

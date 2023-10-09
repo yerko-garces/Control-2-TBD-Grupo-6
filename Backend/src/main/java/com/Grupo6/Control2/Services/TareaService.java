@@ -12,6 +12,8 @@ public class TareaService {
     private final TareaRepository tareaRepository;
 
     @Autowired
+    UsuarioService usuarioService;
+    @Autowired
     public TareaService(TareaRepository tareaRepository){
         this.tareaRepository = tareaRepository;
     }
@@ -32,9 +34,9 @@ public class TareaService {
     public Tarea obtenerTarea(Long id_tarea){
         return tareaRepository.obtenerTareaPorId(id_tarea);
     }
-    public ArrayList<Tarea> obtenerTareasPorUsuario(Long id_usuario){
-        return tareaRepository.obtenerTareasPorUsuario(id_usuario);
+    public ArrayList<Tarea> obtenerTareasPorUsuario(String nombre_usuario){
+        Long id_usuario = usuarioService.obtenerIdUsuarioPorNombre(nombre_usuario);
+        System.out.println(id_usuario);
+        return (ArrayList<Tarea>) tareaRepository.obtenerTareasPorUsuario(id_usuario);
     }
-
-
 }

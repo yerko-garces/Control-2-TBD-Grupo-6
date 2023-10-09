@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/tarea")
 public class TareaController {
 
     private TareaService tareaService;
@@ -34,11 +35,17 @@ public class TareaController {
         tareaService.actualizarTarea(tarea, id_tarea);
     }
 
-    @GetMapping("MostrarTareas")
-    public ArrayList<Tarea> obtenerTareas(){return tareaService.obtenerTareas();}
+    @GetMapping("/MostrarTareas")
+    public ArrayList<Tarea> obtenerTareas(){
 
-    @GetMapping("MostrarPorUsuario/{id_usuario}")
-    public ArrayList<Tarea> obtenerTareasPorUsuario(@PathVariable("id_usuario") Long id_usuario){
-        return tareaService.obtenerTareasPorUsuario(id_usuario);
+        System.out.println("Recibida solicitud para obtener tareas");
+        ArrayList<Tarea> tareas = tareaService.obtenerTareas();
+        System.out.println("Tareas obtenidas: " + tareas);
+
+        return tareas;}
+
+    @GetMapping("/MostrarPorUsuario/{nombre_usuario}")
+    public ArrayList<Tarea> obtenerTareasPorUsuario(@PathVariable("nombre_usuario") String nombre_usuario){
+        return tareaService.obtenerTareasPorUsuario(nombre_usuario);
     }
 }

@@ -10,39 +10,91 @@
             width="300"
             height="150"/>
       </h1>
-        <p class="titulo">TODOS TONTOS MENOS YO</p>
+        <p class="titulo">Formulario para crear tarea</p>
         <br>
         <ul>
           <li>
-          <p class="descripcion">Este es un servicios que permite gestionar de manera eficiente y efectiva distinto tipo de tareas.</p>
-          </li>
-          <li>
-          <p class="descripcion">Aquí podrá revisar estados y realizar seguimiento.</p>
+          <p class="descripcion">Rellene los campos para guardar la tarea.</p>
           </li>
         </ul>
         <br>
-      <v-btn class="button" color="black" variant="outlined" to="/crear-tarea">Mea</v-btn>
-      <v-btn class="button" color="black" variant="outlined" to="/ver-tareas">Vola</v-btn>
-        
+      <div class="input-container">
+        <input v-model="id_tarea" placeholder="ID" class="custom-input">
+        <input v-model="titulo" placeholder="Título" class="custom-input">
+        <input v-model="descripcion" placeholder="Descripción" class="custom-input">
+        <input v-model="vencimiento" placeholder="Vencimiento" class="custom-input">
+        <input v-model="id_usuario" placeholder="ID Usuario" class="custom-input">
+      </div>
+      <div class="input-container">
+        <!-- Tus inputs aquí -->
+      </div>
+      <button @click="crearTarea" class="crear-tarea-btn">Crear Tareas</button>
     </div>
   </v-layout>
 </template>
 
+
+
+
 <script>
+import axios from 'axios';
 import Header from "../components/Header.vue";
 export default {
   components: {
     Header,
   },
+  data() {
+    return {
+      id_tarea: "",
+      titulo: "",
+      descripcion: "",
+      vencimiento: "",
+      id_usuario: "",
+      message: "",
+    };
+  },
+  methods: {
+    async crearTarea() {  
+      // Verificar si todos los campos están llenos antes de crear la tarea
+      if (this.id_tarea && this.titulo && this.descripcion && this.vencimiento && this.id_usuario) {
+        try {
+          const res = await axios({
+          method: 'POST',
+          url: 'http://localhost:8090/CrearTarea',
+          data: {
+            id_tarea: this.id_tarea,
+            titulo: this.titulo,
+            descripcion: this.descripcion,
+            vencimiento: this.vencimiento,
+            id_usuario: this.id_usuario,
+          },
+
+        });
+        if (res.status === 202) {
+          this.$router.push('/ver-tareas');
+        }
+        } catch (error) {
+          console.error("Error al crear tarea:", error);
+          // Puedes manejar el error de la manera que desees
+        }
+      } else {
+        alert("Por favor, complete todos los campos antes de crear la tarea.");
+      }
+    },
+  },
 };
 </script>
 
+
+
 <style scoped>
+
+  
 .centered-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: normal;
   height: 100vh;
 }
 .centered-message {
@@ -55,7 +107,7 @@ export default {
 }
 
 .titulo {
-  font-size: 24px;
+  font-size: 34px;
   font-weight: black;
   padding: 15px;
   border: 2px solid #020202;
@@ -67,9 +119,15 @@ export default {
   color:  #030303;
 }
 
-.button {
-  font-size: 19px;
-  margin-top: 20px;
-  margin-right: 20px;
+.crear-tarea-btn {
+  font-size: 20px;
+  padding: 10px 30px;
+  margin-top: 100px; /* Agrega un margen superior para separar el botón de los campos de entrada */
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #020202;
+  border-radius: 10px;
+  cursor: pointer;
 }
+
 </style>

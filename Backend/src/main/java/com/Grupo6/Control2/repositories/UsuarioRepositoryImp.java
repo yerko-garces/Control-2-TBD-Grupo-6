@@ -91,11 +91,11 @@ public class UsuarioRepositoryImp implements UsuarioRepository{
     }
 
     @Override
-    public Usuario getUsuarioPorNombre(String nombre) {
+    public Usuario getUsuarioPorNombre(String nombre_usuario) {
         try (Connection conn = sql2o.open()) {
             String sql = "SELECT * FROM Usuario WHERE nombre_usuario=:nombre_usuario";
             return conn.createQuery(sql)
-                    .addParameter("nombre_usuario", nombre)
+                    .addParameter("nombre_usuario", nombre_usuario)
                     .executeAndFetchFirst(Usuario.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());

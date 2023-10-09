@@ -24,6 +24,7 @@ export default {
         console.log(res);
         if (res.status === 202) {
           console.log(res);
+          localStorage.setItem('nombre_usuario', nombre_usuario);
           this.$router.push('/about');
         }
       } catch (err) {

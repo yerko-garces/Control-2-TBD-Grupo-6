@@ -34,5 +34,9 @@ public class UsuarioService {
         return usuarioRepository.getUsuarioPorNombre(nombre_usuario);
     }
 
-
+    public Long obtenerIdUsuarioPorNombre(String nombre_usuario){
+        Usuario usuario = usuarioRepository.getUsuarioPorNombre(nombre_usuario);
+        Long id = usuario.getId_usuario();
+        return  id;
+    }
 }

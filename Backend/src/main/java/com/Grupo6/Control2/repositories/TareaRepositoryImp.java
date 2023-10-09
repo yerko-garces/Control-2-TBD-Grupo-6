@@ -89,10 +89,10 @@ public class TareaRepositoryImp implements  TareaRepository{
     }
 
     @Override
-    public ArrayList<Tarea> obtenerTareasPorUsuario(Long id_usuario) {
+    public List<Tarea> obtenerTareasPorUsuario(Long id_usuario) {
         try(Connection conn = sql2o.open()){
             String sql = "SELECT * FROM Tarea WHERE id_usuario=:id_usuario";
-            return (ArrayList<Tarea>) conn.createQuery(sql)
+            return conn.createQuery(sql)
                     .addParameter("id_usuario", id_usuario)
                     .executeAndFetch(Tarea.class);
         }catch (Exception e){
@@ -101,3 +101,22 @@ public class TareaRepositoryImp implements  TareaRepository{
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

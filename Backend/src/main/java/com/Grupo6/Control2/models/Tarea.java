@@ -16,7 +16,8 @@ public class Tarea {
         this.vencimiento = vencimiento;
         this.id_usuario = id_usuario;
     }
-
+    public Tarea() {
+    }
     public Long getId_tarea() {
         return id_tarea;
     }

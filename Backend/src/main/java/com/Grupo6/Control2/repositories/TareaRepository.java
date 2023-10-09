@@ -16,5 +16,5 @@ public interface TareaRepository {
     public void borrarTarea(Long id);
 
     public Tarea obtenerTareaPorId(Long id_tarea);
-    public ArrayList<Tarea> obtenerTareasPorUsuario(Long id_usuario);
+    public List<Tarea> obtenerTareasPorUsuario(Long id_usuario);
 }
