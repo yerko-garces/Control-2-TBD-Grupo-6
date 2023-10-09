@@ -10,7 +10,7 @@
             width="300"
             height="150"/>
       </h1>
-        <p class="titulo">BIENVENIDO AL SISTEMA DE GESTIÓN DE TAREAS USACH</p>
+        <p class="titulo">TODOS TONTOS MENOS YO</p>
         <br>
         <ul>
           <li>
@@ -21,8 +21,8 @@
           </li>
         </ul>
         <br>
-      <v-btn class="button" color="black" variant="outlined" to="/crear-tarea">Crear Tarea</v-btn>
-      <v-btn class="button" color="black" variant="outlined" to="/ver-tareas">Ver Tareas</v-btn>
+      <v-btn class="button" color="black" variant="outlined" to="/crear-tarea">Mea</v-btn>
+      <v-btn class="button" color="black" variant="outlined" to="/ver-tareas">Vola</v-btn>
         
     </div>
   </v-layout>

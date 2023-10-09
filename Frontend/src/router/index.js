@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
+    },
+    { 
+      path: '/crear-tarea',
+      name: 'crear-tarea', 
+      component: () => import('../views/Crear-tareaView.vue')
     }
   ]
 })

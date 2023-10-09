@@ -21,10 +21,9 @@ export default {
           },
 
         });
-        console.log(res.data.status);
-        if (res.data.status === 'success') {
+        console.log(res);
+        if (res.status === 202) {
           console.log(res);
-          alert('Logged in successfully!');
           this.$router.push('/about');
         }
       } catch (err) {
