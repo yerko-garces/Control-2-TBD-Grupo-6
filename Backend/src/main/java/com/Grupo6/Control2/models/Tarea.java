@@ -1,15 +1,16 @@
 package com.Grupo6.Control2.models;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Tarea {
     private Long id_tarea;
     private String titulo;
     private String descripcion;
-    private LocalDate vencimiento;
+    private Date vencimiento;
     private Long id_usuario;
 
-    public Tarea(Long id_tarea, String titulo, String descripcion, LocalDate vencimiento, Long id_usuario) {
+    public Tarea(Long id_tarea, String titulo, String descripcion, Date vencimiento, Long id_usuario) {
         this.id_tarea = id_tarea;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -42,11 +43,11 @@ public class Tarea {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getVencimiento() {
+    public Date getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(LocalDate vencimiento) {
+    public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
 

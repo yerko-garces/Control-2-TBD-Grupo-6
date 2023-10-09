@@ -13,8 +13,12 @@ import java.util.List;
 @Repository
 public class TareaRepositoryImp implements  TareaRepository{
 
+    private final Sql2o sql2o;
+
     @Autowired
-    private Sql2o sql2o;
+    public TareaRepositoryImp(Sql2o sql2o) {
+        this.sql2o = sql2o;
+    }
 
     @Override
     public Tarea crearTarea(Tarea tarea) {
@@ -90,16 +94,25 @@ public class TareaRepositoryImp implements  TareaRepository{
 
     @Override
     public List<Tarea> obtenerTareasPorUsuario(Long id_usuario) {
-        try(Connection conn = sql2o.open()){
-            String sql = "SELECT * FROM Tarea WHERE id_usuario=:id_usuario";
-            return conn.createQuery(sql)
+        try (Connection con = sql2o.open()) {
+            String query = "SELECT * FROM Tarea WHERE id_usuario = :id_usuario";
+
+            // Ejecuta la consulta y obtén una lista de objetos Tarea
+            List<Tarea> tareas = con.createQuery(query)
                     .addParameter("id_usuario", id_usuario)
                     .executeAndFetch(Tarea.class);
-        }catch (Exception e){
+
+            // Itera sobre la lista de tareas y realiza las operaciones necesarias
+            for (Tarea tarea : tareas) {
+                System.out.println(tarea.toString());
+            }
+            return tareas;
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
     }
+
 }
 
 

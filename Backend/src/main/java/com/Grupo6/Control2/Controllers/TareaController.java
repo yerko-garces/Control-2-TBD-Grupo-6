@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/tarea")
+@RequestMapping("/Tarea")
 public class TareaController {
 
     private TareaService tareaService;
@@ -46,6 +46,7 @@ public class TareaController {
 
     @GetMapping("/MostrarPorUsuario/{nombre_usuario}")
     public ArrayList<Tarea> obtenerTareasPorUsuario(@PathVariable("nombre_usuario") String nombre_usuario){
+        System.out.println(nombre_usuario);
         return tareaService.obtenerTareasPorUsuario(nombre_usuario);
     }
 }
