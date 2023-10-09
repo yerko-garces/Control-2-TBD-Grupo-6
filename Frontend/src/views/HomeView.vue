@@ -85,6 +85,19 @@ export default {
         INICIAR SESIÓN
       </v-btn>
 
+      <v-btn
+        block
+        class="mb-8"
+        color="blue"
+        size="large"
+        variant="tonal"
+        to="/registrar-usuario"
+        @click="crear"
+      >
+        Registrarse
+      </v-btn>
+      
+
 
 
 

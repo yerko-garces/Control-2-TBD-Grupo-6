@@ -13,8 +13,7 @@ public class DatabaseContext {
 
     @Value("postgres")
     private String dbUser;
-
-    @Value("1234")
+    @Value("contrasena")
     private String dbPass;
 
     @Bean

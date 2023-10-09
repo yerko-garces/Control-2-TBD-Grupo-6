@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/crear-tarea',
       name: 'crear-tarea', 
       component: () => import('../views/Crear-tareaView.vue')
+    },
+    { 
+      path: '/registrar-usuario',
+      name: 'registrar-usuario', 
+      component: () => import('../views/registrar-usuario.vue')
     }
   ]
 })
