@@ -28,6 +28,12 @@ public class UsuarioController {
         return usuarioService.crearUsuario(usuario);
     }
 
+    @PostMapping("/CrearUsuario2")
+    @ResponseBody
+    public Usuario crearUsuarioSinID(@RequestBody Usuario usuario){
+        return usuarioService.crearUsuarioSinId(usuario);
+    }
+
     @DeleteMapping("/BorrarUsuario/{id_usuario}")
     public void borrarUsuario(@PathVariable("id_usuario") Long id_usario){
         usuarioService.borrarUsuario(id_usario);

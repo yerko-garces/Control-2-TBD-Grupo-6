@@ -12,6 +12,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public Usuario(String nombre_usuario, String contrasena) {
+        this.nombre_usuario = nombre_usuario;
+        this.contrasena = contrasena;
+    }
+
     public Usuario() {
     }
 

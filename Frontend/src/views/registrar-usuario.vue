@@ -6,24 +6,6 @@
         </div>
   
 
-
-        <v-row class="d-flex justify-center">
-          <v-col
-            cols="12"
-            md="4"
-          >
-            <v-text-field
-              v-model="id_usuario"
-              :rules="requisitosMax"
-              :counter="10"
-              label="ID"
-              placeholder="Por qué tenemos que colocar el id?"
-              hide-details
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-
         <v-row class="d-flex justify-center">
           <v-col
             cols="12"
@@ -100,9 +82,8 @@ export default {
       try {
         const res = await axios({
           method: 'POST',
-          url: 'http://localhost:8090/Usuario/CrearUsuario',
+          url: 'http://localhost:8090/Usuario/CrearUsuario2',
           data: {
-            id_usuario: this.id_usuario,
             nombre_usuario: this.nombre,
             contrasena: this.contrasena,
           },

@@ -18,6 +18,11 @@ public class UsuarioService {
         Usuario resultado = usuarioRepository.crearUsuario(usuario);
         return resultado;
     }
+
+    public Usuario crearUsuarioSinId(Usuario usuario){
+        Usuario resultado = usuarioRepository.crearUsuarioSinId(usuario);
+        return resultado;
+    }
     public void borrarUsuario(Long id_usuario){
         usuarioRepository.borrarUsuario(id_usuario);
     }

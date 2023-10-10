@@ -35,6 +35,22 @@ public class UsuarioRepositoryImp implements UsuarioRepository{
     }
 
     @Override
+    public Usuario crearUsuarioSinId(Usuario usuario) {
+        try (Connection conn = sql2o.open()) {
+            String sql = "INSERT INTO Usuario (nombre_usuario, contrasena)" +
+                    "VALUES (:nombre_usuario, :contrasena)";
+            conn.createQuery(sql, true)
+                    .addParameter("nombre_usuario", usuario.getNombre_usuario())
+                    .addParameter("contrasena",usuario.getContrasena())
+                    .executeUpdate();
+            return usuario;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public boolean borrarUsuario(Long id_usuario) {
         try (Connection conn = sql2o.open()) {
             String sql = "DELETE FROM Usuario WHERE id_usuario=:id_usuario";
