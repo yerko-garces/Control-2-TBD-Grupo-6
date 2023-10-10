@@ -3,6 +3,8 @@ package com.Grupo6.Control2.Controllers;
 import com.Grupo6.Control2.Services.TareaService;
 import com.Grupo6.Control2.models.Tarea;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,9 +28,9 @@ public class TareaController {
 
     @PostMapping("/CrearTarea2")
     @ResponseBody
-    public Tarea crearTarea2(@RequestBody Tarea tarea){
+    public ResponseEntity<String> crearTarea2(@RequestBody Tarea tarea){
         Tarea resultado = tareaService.crearTareaSinID(tarea);
-        return resultado;
+        return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarea exitosa");
     }
 
     @DeleteMapping("BorrarTarea/{id_tarea}")

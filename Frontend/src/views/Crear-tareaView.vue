@@ -3,21 +3,16 @@
     <Header />
     <div class="centered-message">
       <h1>
-        <img
-            alt="Vue logo"
-            class="logo"
-            src="@/assets/logo_sai_usach_4.png"
-            width="300"
-            height="150"/>
+        <img alt="Vue logo" class="logo" src="@/assets/logo_sai_usach_4.png" width="300" height="150" />
       </h1>
-        <p class="titulo">Formulario para crear tarea</p>
-        <br>
-        <ul>
-          <li>
+      <p class="titulo">Formulario para crear tarea</p>
+      <br>
+      <ul>
+        <li>
           <p class="descripcion">Rellene los campos para guardar la tarea.</p>
-          </li>
-        </ul>
-        <br>
+        </li>
+      </ul>
+      <br>
       <div class="input-container">
         <input v-model="titulo" placeholder="Título" class="custom-input">
         <input v-model="descripcion" placeholder="Descripción" class="custom-input">
@@ -27,14 +22,7 @@
       <div class="input-container">
         <!-- Tus inputs aquí -->
       </div>
-      <v-btn
-        block
-        class="mb-8"
-        color="green"
-        size="large"
-        variant="tonal"
-        @click="crearTarea"
-      >
+      <v-btn block class="mb-8" color="green" size="large" variant="tonal" @click="crearTarea">
         Crear Tarea
       </v-btn>
     </div>
@@ -62,23 +50,24 @@ export default {
     };
   },
   methods: {
-    async crearTarea() {  
+    async crearTarea() {
+      console.log(this.titulo + this.descripcion + this.vencimiento + this.id_usuario);
       if (this.titulo && this.descripcion && this.vencimiento && this.id_usuario) {
         try {
           const res = await axios({
-          method: 'POST',
-          url: 'http://localhost:8090/Tarea/CrearTarea2',
-          data: {
-            titulo: this.titulo,
-            descripcion: this.descripcion,
-            vencimiento: this.vencimiento,
-            id_usuario: this.id_usuario,
-          },
+            method: 'POST',
+            url: 'http://localhost:8090/Tarea/CrearTarea2',
+            data: {
+              titulo: this.titulo,
+              descripcion: this.descripcion,
+              vencimiento: this.vencimiento,
+              id_usuario: this.id_usuario,
+            },
 
-        });
-        if (res.status === 202) {
-          this.$router.push('/about');
-        } 
+          });
+          if (res.status === 202) {
+            this.$router.push('/about');
+          }
         } catch (error) {
           console.error("Error al crear tarea:", error);
         }
@@ -93,8 +82,6 @@ export default {
 
 
 <style scoped>
-
-  
 .centered-layout {
   display: flex;
   flex-direction: column;
@@ -102,10 +89,12 @@ export default {
   justify-content: normal;
   height: 100vh;
 }
+
 .centered-message {
   text-align: center;
   padding: 10 px;
 }
+
 .icon {
   margin-right: 10px;
   margin-left: 10px;
@@ -119,20 +108,21 @@ export default {
   border-radius: 10px;
   background-color: #EA7600;
 }
+
 .descripcion {
   font-size: 18px;
-  color:  #030303;
+  color: #030303;
 }
 
 .crear-tarea-btn {
   font-size: 20px;
-  padding: 10px 30px; 
-  margin-top: 100px; /* Agrega un margen superior para separar el botón de los campos de entrada */
+  padding: 10px 30px;
+  margin-top: 100px;
+  /* Agrega un margen superior para separar el botón de los campos de entrada */
   background-color: #4CAF50;
   color: white;
   border: 1px solid #020202;
   border-radius: 10px;
   cursor: pointer;
 }
-
 </style>
