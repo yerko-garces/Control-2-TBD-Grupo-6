@@ -25,8 +25,8 @@ public class TareaService {
     public void borrarTarea(Long id_tarea){
         tareaRepository.borrarTarea(id_tarea);
     }
-    public void actualizarTarea(Tarea tarea, Long id_tarea){
-        tareaRepository.actualizarTarea(tarea, id_tarea);
+    public void actualizarTarea(Tarea tarea){
+        tareaRepository.actualizarTarea(tarea);
     }
     public ArrayList<Tarea> obtenerTareas(){
         return tareaRepository.todasLasTareas();
@@ -38,5 +38,10 @@ public class TareaService {
         Long id_usuario = usuarioService.obtenerIdUsuarioPorNombre(nombre_usuario);
         System.out.println(id_usuario);
         return (ArrayList<Tarea>) tareaRepository.obtenerTareasPorUsuario(id_usuario);
+    }
+
+    public Tarea crearTareaSinID(Tarea tarea){
+        tareaRepository.crearTareaSinID(tarea);
+        return tarea;
     }
 }

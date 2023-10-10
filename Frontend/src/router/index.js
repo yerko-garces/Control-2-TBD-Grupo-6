@@ -23,6 +23,16 @@ const router = createRouter({
       path: '/registrar-usuario',
       name: 'registrar-usuario', 
       component: () => import('../views/registrar-usuario.vue')
+    },
+    { 
+      path: '/Ver-Tarea',
+      name: 'Ver-Tarea', 
+      component: () => import('../views/Ver-TareaView.vue')
+    },
+    { 
+      path: '/editarTarea',
+      name: 'editarTarea', 
+      component: () => import('../views/editarTareaView.vue')
     }
   ]
 })

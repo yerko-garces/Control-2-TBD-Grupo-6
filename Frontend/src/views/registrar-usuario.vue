@@ -64,7 +64,6 @@ export default {
   name: 'registerView',
   data() {
     return {
-      id_usuario: '',
       nombre: '',
       contrasena: '',
       error: '',

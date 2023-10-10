@@ -40,9 +40,9 @@ public class TareaRepositoryImp implements  TareaRepository{
     }
 
     @Override
-    public String actualizarTarea(Tarea tarea, Long id) {
+    public String actualizarTarea(Tarea tarea) {
         try (Connection conn = sql2o.open()) {
-            String sql = "UPDATE Tarea SET id_tarea=:id_tarea, titulo=:titulo, descripcion=:descripcion, vencimiento=:vencimiento, id_usuario=:id_usuario" ;
+            String sql = "UPDATE Tarea SET titulo=:titulo, descripcion=:descripcion, vencimiento=:vencimiento, id_usuario=:id_usuario WHERE id_tarea=:id_tarea" ;
             conn.createQuery(sql)
                     .addParameter("id_tarea", tarea.getId_tarea())
                     .addParameter("titulo", tarea.getTitulo())
@@ -107,6 +107,24 @@ public class TareaRepositoryImp implements  TareaRepository{
                 System.out.println(tarea.toString());
             }
             return tareas;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Tarea crearTareaSinID(Tarea tarea) {
+        try (Connection conn = sql2o.open()) {
+            String sql = "INSERT INTO Tarea (titulo, descripcion, vencimiento, id_usuario)" +
+                    "VALUES (:titulo, :descripcion, :vencimiento, :id_usuario)";
+            conn.createQuery(sql, true)
+                    .addParameter("titulo", tarea.getTitulo())
+                    .addParameter("descripcion", tarea.getDescripcion())
+                    .addParameter("vencimiento", tarea.getVencimiento())
+                    .addParameter("id_usuario", tarea.getId_usuario())
+                    .executeUpdate();
+            return tarea;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

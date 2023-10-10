@@ -10,6 +10,13 @@ public class Tarea {
     private Date vencimiento;
     private Long id_usuario;
 
+
+    public Tarea(String titulo, String descripcion, Date vencimiento, Long id_usuario) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.vencimiento = vencimiento;
+        this.id_usuario = id_usuario;
+    }
     public Tarea(Long id_tarea, String titulo, String descripcion, Date vencimiento, Long id_usuario) {
         this.id_tarea = id_tarea;
         this.titulo = titulo;

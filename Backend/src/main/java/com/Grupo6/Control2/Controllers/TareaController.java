@@ -24,15 +24,23 @@ public class TareaController {
         return resultado;
     }
 
+    @PostMapping("/CrearTarea2")
+    @ResponseBody
+    public Tarea crearTarea2(@RequestBody Tarea tarea){
+        Tarea resultado = tareaService.crearTareaSinID(tarea);
+        return resultado;
+    }
+
     @DeleteMapping("BorrarTarea/{id_tarea}")
     public void borrarTarea(@PathVariable("id_tarea") Long id_tarea){
         tareaService.borrarTarea(id_tarea);
     }
 
-    @PutMapping("ActualizarTarea/{id_tarea}")
+    @PostMapping("ActualizarTarea")
     @ResponseBody
-    public void actualizarTarea(@RequestBody Tarea tarea, @PathVariable("id_tarea") Long id_tarea){
-        tareaService.actualizarTarea(tarea, id_tarea);
+    public void actualizarTarea(@RequestBody Tarea tarea){
+        System.out.println("Esta es la tarea: "+tarea.getVencimiento());
+        tareaService.actualizarTarea(tarea);
     }
 
     @GetMapping("/MostrarTareas")

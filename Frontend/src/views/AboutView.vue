@@ -22,7 +22,7 @@
         </ul>
         <br>
       <v-btn class="button" color="black" variant="outlined" to="/crear-tarea">Crear Tarea</v-btn>
-      <v-btn class="button" color="black" variant="outlined" to="/ver-tareas">Ver Tareas</v-btn>
+      <v-btn class="button" color="black" variant="outlined" to="/Ver-Tarea">Ver Tareas</v-btn>
       
         
     </div>

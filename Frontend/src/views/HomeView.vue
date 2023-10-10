@@ -23,8 +23,7 @@ export default {
         });
         console.log(res);
         if (res.status === 202) {
-          console.log(res);
-          localStorage.setItem('nombre_usuario', this.nombre_usuario);
+          localStorage.setItem('nombre_usuario', this.usuario);
           this.$router.push('/about');
         }
       } catch (err) {
@@ -46,14 +45,7 @@ export default {
     >
       <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
 
-      <v-responsive class="mx-auto" max-width="400">
-        <v-text-field
-          label="Nombre de usuario"
-          placeholder="Introduzca su nombre de usuario"
-          type="input"
-          v-model="usuario"
-        ></v-text-field>
-      </v-responsive>
+      
 
       <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
         Contraseña

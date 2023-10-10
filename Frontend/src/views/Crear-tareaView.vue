@@ -19,16 +19,24 @@
         </ul>
         <br>
       <div class="input-container">
-        <input v-model="id_tarea" placeholder="ID" class="custom-input">
         <input v-model="titulo" placeholder="Título" class="custom-input">
         <input v-model="descripcion" placeholder="Descripción" class="custom-input">
-        <input v-model="vencimiento" placeholder="Vencimiento" class="custom-input">
+        <input v-model="vencimiento" type="date" placeholder="Vencimiento" class="custom-input">
         <input v-model="id_usuario" placeholder="ID Usuario" class="custom-input">
       </div>
       <div class="input-container">
         <!-- Tus inputs aquí -->
       </div>
-      <button @click="crearTarea" class="crear-tarea-btn">Crear Tareas</button>
+      <v-btn
+        block
+        class="mb-8"
+        color="green"
+        size="large"
+        variant="tonal"
+        @click="crearTarea"
+      >
+        Crear Tarea
+      </v-btn>
     </div>
   </v-layout>
 </template>
@@ -55,14 +63,12 @@ export default {
   },
   methods: {
     async crearTarea() {  
-      // Verificar si todos los campos están llenos antes de crear la tarea
-      if (this.id_tarea && this.titulo && this.descripcion && this.vencimiento && this.id_usuario) {
+      if (this.titulo && this.descripcion && this.vencimiento && this.id_usuario) {
         try {
           const res = await axios({
           method: 'POST',
-          url: 'http://localhost:8090/CrearTarea',
+          url: 'http://localhost:8090/Tarea/CrearTarea2',
           data: {
-            id_tarea: this.id_tarea,
             titulo: this.titulo,
             descripcion: this.descripcion,
             vencimiento: this.vencimiento,
@@ -71,11 +77,10 @@ export default {
 
         });
         if (res.status === 202) {
-          this.$router.push('/ver-tareas');
-        }
+          this.$router.push('/about');
+        } 
         } catch (error) {
           console.error("Error al crear tarea:", error);
-          // Puedes manejar el error de la manera que desees
         }
       } else {
         alert("Por favor, complete todos los campos antes de crear la tarea.");
@@ -121,7 +126,7 @@ export default {
 
 .crear-tarea-btn {
   font-size: 20px;
-  padding: 10px 30px;
+  padding: 10px 30px; 
   margin-top: 100px; /* Agrega un margen superior para separar el botón de los campos de entrada */
   background-color: #4CAF50;
   color: white;

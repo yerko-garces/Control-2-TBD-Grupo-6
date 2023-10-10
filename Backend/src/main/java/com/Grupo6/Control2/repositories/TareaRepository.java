@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface TareaRepository {
+    public Tarea crearTareaSinID(Tarea tarea);
     public Tarea crearTarea(Tarea tarea);
 
-    public String actualizarTarea(Tarea tarea, Long id);
+    public String actualizarTarea(Tarea tarea);
 
     public ArrayList<Tarea> todasLasTareas();
 
