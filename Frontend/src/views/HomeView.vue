@@ -39,13 +39,20 @@ export default {
   <div>
     <v-card
       class="mx-auto pa-12 pb-8"
-      elevation="8"
+      elevation="15"
       max-width="500"
       rounded="lg"
+      style="margin-top: 40px;"
     >
       <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
-
-      
+      <v-responsive class="mx-auto" max-width="400">
+        <v-text-field
+            label="Usuario"
+            placeholder="Introduzca su email de usuario"
+            type="input"
+            v-model="usuario"
+        ></v-text-field>
+      </v-responsive>
 
       <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
         Contraseña
@@ -89,11 +96,6 @@ export default {
       >
         Registrarse
       </v-btn>
-      
-
-
-
-
 
       <v-card-text class="text-center">
         <a

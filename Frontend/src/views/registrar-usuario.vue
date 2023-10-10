@@ -1,61 +1,58 @@
 <template>
-    <v-form v-model="valid">
-      <v-container>
-        <div class="form-title">
-          <h2>Formulario registro</h2>
-        </div>
-  
+  <v-form v-model="valid">
+    <v-container>
+      <div class="form-title">
+        <h2>Formulario registro</h2>
+      </div>
 
-        <v-row class="d-flex justify-center">
-          <v-col
-            cols="12"
-            md="4"
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="nombre"
+            :rules="requisitosMax"
+            :counter="10"
+            label="Nombre de usuario"
+            placeholder="Introduzca su nombre de usuario"
+            required
+            hide-details
+          ></v-text-field>
+        </v-col>
+      </v-row>
+
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="contrasena"
+            :rules="requisitosMax"
+            :counter="10"
+            label="Contraseña"
+            placeholder="Introduzca su contraseña"
+            hide-details
+            required
+            style="margin-bottom: 30px;"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" md="4">
+          <v-btn
+            block
+            color="green"
+            size="large"
+            variant="tonal"
+            to="/registrar-usuario"
+            @click="registrar"
           >
-            <v-text-field
-              v-model="nombre"
-              :rules="requisitosMax"
-              :counter="10"
-              label="Nombre de usuario"
-              placeholder="Introduzca su nombre de usuario"
-              required
-              hide-details
-            ></v-text-field>
-          </v-col>
-        </v-row>
-  
-        
-        <v-row class="d-flex justify-center">
-          <v-col
-            cols="12"
-            md="4"
-          >
-            <v-text-field
-              v-model="contrasena"
-              :rules="requisitosMax"
-              :counter="10"
-              label="Contraseña"
-              placeholder="Introduzca su contraseña"
-              hide-details
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
+            Registrar
+          </v-btn>
+        </v-col>
+      </v-row>
 
-        <v-btn
-        block
-        class="mb-8"
-        color="green"
-        size="large"
-        variant="tonal"
-        to="/registrar-usuario"
-        @click="registrar"
-      >
-        Registrar
-        </v-btn>
+    </v-container>
+  </v-form>
+</template>
 
-      </v-container>
-    </v-form>
-  </template>
   
   <script>
 
