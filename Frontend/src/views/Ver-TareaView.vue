@@ -12,6 +12,7 @@
             <tr>
               <th>Título</th>
               <th>Descripción</th>
+              <th>status</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -19,14 +20,19 @@
             <tr v-for="tarea in historial" :key="tarea.id_tarea">
               <td>{{ tarea.titulo }}</td>
               <td>{{ tarea.descripcion }}</td>
+              <td>{{ mostrarStatus(tarea.status) }}</td>
               <td>
-                <v-btn block class="mb-1" color="green" background-color="#394049" @click="editarTarea(tarea);
+                <v-btn v-if="mostrarBoton(tarea)" block class="mb-1" color="green" background-color="#394049" @click="editarTarea(tarea);
                 ">
                   <div>Editar Tarea</div>
                 </v-btn>
                 <v-btn block class="mb-1" color="red" background-color="#394049" @click="borrarTarea(tarea);
                 ">
                   <div>Eliminar Tarea</div>
+                </v-btn>
+                <v-btn v-if="mostrarBoton(tarea)" block class="mb-1" color="blue" background-color="#394049" @click="cancelarTarea(tarea);
+                ">
+                  <div>Finalizar Tarea</div>
                 </v-btn>
               </td>
             </tr>
@@ -109,7 +115,6 @@ export default {
   methods: {
     cargarHistorial() {
       const nombre_usuario = localStorage.getItem('nombre_usuario');
-      console.log(nombre_usuario);
       const url = `http://localhost:8090/Tarea/MostrarPorUsuario/${nombre_usuario}`;
       axios.get(url)
         .then(response => {
@@ -122,7 +127,6 @@ export default {
     editarTarea(tarea) {
 
       localStorage.setItem("tarea", JSON.stringify(tarea));
-      console.log(localStorage.getItem("tarea"));
       this.$router.push('/editarTarea');
     },
      async borrarTarea(tarea) {
@@ -138,6 +142,30 @@ export default {
         console.error('Error al borrar tareas:', error);
       }
     },
+    async cancelarTarea(tarea){
+      try{
+        await axios.put(`http://localhost:8090/Tarea/CambiarStatus/${tarea.id_tarea}`).then(response => {
+          this.cargarHistorial();
+        }).catch(error => {
+            console.error('Error al finalizar tarea:', error);
+          });
+      }catch {
+        console.error('Error al finalizar tarea:', error);
+      }
+    },
+    mostrarStatus(status){
+      if(status){
+        return("Pendiente");
+      }else{
+        return("Finalizada");
+      }
+    },
+    mostrarBoton(tarea){
+      console.log(tarea.status)
+      console.log(tarea)
+      return tarea.status;
+    }
+    
 
 
 

@@ -116,18 +116,31 @@ public class TareaRepositoryImp implements  TareaRepository{
     @Override
     public Tarea crearTareaSinID(Tarea tarea) {
         try (Connection conn = sql2o.open()) {
-            String sql = "INSERT INTO Tarea (titulo, descripcion, vencimiento, id_usuario)" +
-                    "VALUES (:titulo, :descripcion, :vencimiento, :id_usuario)";
+            String sql = "INSERT INTO Tarea (titulo, descripcion, vencimiento, id_usuario, status)" +
+                    "VALUES (:titulo, :descripcion, :vencimiento, :id_usuario, :status)";
             conn.createQuery(sql, true)
                     .addParameter("titulo", tarea.getTitulo())
                     .addParameter("descripcion", tarea.getDescripcion())
                     .addParameter("vencimiento", tarea.getVencimiento())
                     .addParameter("id_usuario", tarea.getId_usuario())
+                    .addParameter("status", tarea.isStatus())
                     .executeUpdate();
             return tarea;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
+        }
+    }
+    @Override
+    public void actualizarEstatus(Long id_tarea, boolean status){
+        try (Connection conn = sql2o.open()) {
+            String sql = "UPDATE Tarea SET status=:status WHERE id_tarea=:id_tarea" ;
+            conn.createQuery(sql)
+                    .addParameter("id_tarea", id_tarea)
+                    .addParameter("status", status )
+                    .executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

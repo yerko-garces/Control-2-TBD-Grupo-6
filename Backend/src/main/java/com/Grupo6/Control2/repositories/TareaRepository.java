@@ -18,4 +18,5 @@ public interface TareaRepository {
 
     public Tarea obtenerTareaPorId(Long id_tarea);
     public List<Tarea> obtenerTareasPorUsuario(Long id_usuario);
+    public void actualizarEstatus(Long id_tarea, boolean status);
 }

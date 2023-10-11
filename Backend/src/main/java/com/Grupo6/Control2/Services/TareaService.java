@@ -44,4 +44,8 @@ public class TareaService {
         tareaRepository.crearTareaSinID(tarea);
         return tarea;
     }
+
+    public void cambiarStatus(Long id){
+        tareaRepository.actualizarEstatus(id,false);
+    }
 }

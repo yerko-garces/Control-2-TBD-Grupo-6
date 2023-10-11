@@ -29,7 +29,8 @@ public class TareaController {
     @PostMapping("/CrearTarea2")
     @ResponseBody
     public ResponseEntity<String> crearTarea2(@RequestBody Tarea tarea){
-        Tarea resultado = tareaService.crearTareaSinID(tarea);
+        tarea.setStatus(true);
+        tareaService.crearTareaSinID(tarea);
         return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarea exitosa");
     }
 
@@ -58,5 +59,11 @@ public class TareaController {
     public ArrayList<Tarea> obtenerTareasPorUsuario(@PathVariable("nombre_usuario") String nombre_usuario){
         System.out.println(nombre_usuario);
         return tareaService.obtenerTareasPorUsuario(nombre_usuario);
+    }
+
+    @PutMapping("/CambiarStatus/{id_tarea}")
+    public void cambiarStatus(@PathVariable("id_tarea") Long id_tarea){
+        System.out.println("entro a cambiar status");
+        tareaService.cambiarStatus(id_tarea);
     }
 }

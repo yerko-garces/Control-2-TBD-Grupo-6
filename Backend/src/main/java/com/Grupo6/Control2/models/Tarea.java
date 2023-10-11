@@ -1,6 +1,5 @@
 package com.Grupo6.Control2.models;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Tarea {
@@ -9,20 +8,23 @@ public class Tarea {
     private String descripcion;
     private Date vencimiento;
     private Long id_usuario;
+    private boolean status;
 
 
-    public Tarea(String titulo, String descripcion, Date vencimiento, Long id_usuario) {
+    public Tarea(String titulo, String descripcion, Date vencimiento, Long id_usuario, boolean status) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.vencimiento = vencimiento;
         this.id_usuario = id_usuario;
+        this.status = status;
     }
-    public Tarea(Long id_tarea, String titulo, String descripcion, Date vencimiento, Long id_usuario) {
+    public Tarea(Long id_tarea, String titulo, String descripcion, Date vencimiento, Long id_usuario, boolean status) {
         this.id_tarea = id_tarea;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.vencimiento = vencimiento;
         this.id_usuario = id_usuario;
+        this.status = status;
     }
     public Tarea() {
     }
@@ -67,4 +69,11 @@ public class Tarea {
     }
 
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
