@@ -30,8 +30,11 @@ export default {
           this.$router.push('/about');
         }
       } catch (err) {
-        this.error = err.response.data;
-        alert(this.error);
+        this.$swal({
+          icon: 'error',
+          title: 'Error',
+          text: 'Credenciales invalidas.',
+        });
       }
     },
   },
@@ -72,7 +75,7 @@ export default {
         <v-text-field
             label="Contraseña"
             placeholder="Introduzca su contraseña"
-            type="input"
+            type="password"
             v-model="password"
         ></v-text-field>
       </v-responsive>

@@ -66,6 +66,7 @@ public class UsuarioController {
         Usuario usuario1 = usuarioService.obtenerUsuarioPorNombre(usuario.getNombre_usuario());
         if (usuario1 != null && usuario1.getContrasena().equals(usuario.getContrasena())) {
             System.out.println("Login exitoso");
+            usuario1.setContrasena(null);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuario1);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);

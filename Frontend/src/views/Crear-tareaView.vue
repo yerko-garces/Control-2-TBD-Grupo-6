@@ -65,14 +65,27 @@ export default {
 
           });
           if (res.status === 202) {
-            this.$router.push('/about');
+            this.$swal({ // Muestra la alerta de éxito
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Tarea creada.',
+            }).then(() => {
+              this.$router.push('/Ver-Tarea'); // Redirige al usuario
+            });
           }
         } catch (error) {
-          console.error("Error al crear tarea:", error);
+          this.$swal({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al crear la tarea.',
+          });
         }
       } else {
-        alert("Por favor, complete todos los campos antes de crear la tarea.");
-      }
+        this.$swal({
+          icon: 'error',
+          title: 'Error',
+          text: 'Porfavor rellene todos los campos.',
+        });      }
     },
   },
 };

@@ -75,24 +75,39 @@ export default {
   },
   methods: {
     async registrar() {
-      try {
-        const res = await axios({
-          method: 'POST',
-          url: 'http://localhost:8090/Usuario/CrearUsuario2',
-          data: {
-            nombre_usuario: this.nombre,
-            contrasena: this.contrasena,
-          },
+      if(this.nombre && this.contrasena){
+        try {
+          const res = await axios({
+            method: 'POST',
+            url: 'http://localhost:8090/Usuario/CrearUsuario2',
+            data: {
+              nombre_usuario: this.nombre,
+              contrasena: this.contrasena,
+            },
 
-        });
-        if (res.status === 200) {
-          this.$router.push('/');
+          });
+          if (res.status === 200) {
+            this.$swal({ // Muestra la alerta de éxito
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Se ha registrado el usuario.',
+            }).then(() => {
+              this.$router.push('/'); // Redirige al usuario
+            });
+          }
+        } catch (err) {
+          this.error = err.response.data;
+          alert(this.error);
         }
-      } catch (err) {
-        this.error = err.response.data;
-        alert(this.error);
+      }else{
+        this.$swal({ // Muestra una alerta de error
+          icon: 'error',
+          title: 'Error',
+          text: 'Por favor, complete todos los campos antes de actualizar la tarea.',
+        });
       }
-    },
+
+      },
   },
 };
   </script>
