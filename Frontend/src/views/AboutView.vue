@@ -8,7 +8,7 @@
             class="logo"
             src="@/assets/logo_sai_usach_4.png"
             width="300"
-            height="150"/>
+            height="300"/>
       </h1>
         <p class="titulo">BIENVENIDO AL SISTEMA DE GESTIÓN DE TAREAS USACH</p>
         <br>

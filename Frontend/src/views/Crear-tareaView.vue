@@ -19,7 +19,6 @@
         <input v-model="vencimiento" type="date" placeholder="Vencimiento" class="custom-input">
       </div>
       <div class="input-container">
-        <!-- Tus inputs aquí -->
       </div>
       <v-btn block class="mb-8" color="green" size="large" variant="tonal" @click="crearTarea">
         Crear Tarea
@@ -65,12 +64,12 @@ export default {
 
           });
           if (res.status === 202) {
-            this.$swal({ // Muestra la alerta de éxito
+            this.$swal({ 
               icon: 'success',
               title: 'Éxito',
               text: 'Tarea creada.',
             }).then(() => {
-              this.$router.push('/Ver-Tarea'); // Redirige al usuario
+              this.$router.push('/Ver-Tarea'); 
             });
           }
         } catch (error) {
@@ -130,7 +129,6 @@ export default {
   font-size: 20px;
   padding: 10px 30px;
   margin-top: 100px;
-  /* Agrega un margen superior para separar el botón de los campos de entrada */
   background-color: #4CAF50;
   color: white;
   border: 1px solid #020202;

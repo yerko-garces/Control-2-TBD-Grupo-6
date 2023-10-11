@@ -87,12 +87,12 @@ export default {
 
           });
           if (res.status === 200) {
-            this.$swal({ // Muestra la alerta de éxito
+            this.$swal({ 
               icon: 'success',
               title: 'Éxito',
               text: 'Se ha registrado el usuario.',
             }).then(() => {
-              this.$router.push('/'); // Redirige al usuario
+              this.$router.push('/'); 
             });
           }
         } catch (err) {
@@ -100,10 +100,10 @@ export default {
           alert(this.error);
         }
       }else{
-        this.$swal({ // Muestra una alerta de error
+        this.$swal({ 
           icon: 'error',
           title: 'Error',
-          text: 'Por favor, complete todos los campos antes de actualizar la tarea.',
+          text: 'Por favor, complete todos los campos.',
         });
       }
 
@@ -113,11 +113,10 @@ export default {
   </script>
   
   <style>
-  /* Estilo personalizado para el título */
   .form-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333; /* Cambia el color según tus preferencias */
+    color: #333; 
   }
   </style>

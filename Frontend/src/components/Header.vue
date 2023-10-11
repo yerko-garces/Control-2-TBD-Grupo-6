@@ -5,8 +5,8 @@
             alt="Vue logo"
             class="logo"
             src="@/assets/logo_sai_usach_4.png"
-            width="100"
-            height="40"
+            width="70"
+            height="70"
           />
   
         <v-btn variant="plain" to="/about">Inicio</v-btn>

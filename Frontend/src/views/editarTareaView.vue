@@ -73,19 +73,19 @@ export default {
           try {
             const res = await axios.post( "http://localhost:8090/Tarea/ActualizarTarea", this.tarea2);
             if (res.status === 200) {
-              this.$swal({ // Muestra la alerta de éxito
+              this.$swal({ 
                 icon: 'success',
                 title: 'Éxito',
                 text: 'Se actualizaron correctamente los datos',
               }).then(() => {
-                this.$router.push('/Ver-Tarea'); // Redirige al usuario
+                this.$router.push('/Ver-Tarea'); 
               });
             }
           } catch (error) {
             console.error("Error al crear tarea:", error);
           }
         } else {
-          this.$swal({ // Muestra una alerta de error
+          this.$swal({ 
             icon: 'error',
             title: 'Error',
             text: 'Por favor, complete todos los campos antes de actualizar la tarea.',
