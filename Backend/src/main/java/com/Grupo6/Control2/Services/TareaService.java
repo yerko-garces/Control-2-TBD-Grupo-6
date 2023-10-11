@@ -5,6 +5,9 @@ import com.Grupo6.Control2.repositories.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 @Service
@@ -47,5 +50,19 @@ public class TareaService {
 
     public void cambiarStatus(Long id){
         tareaRepository.actualizarEstatus(id,false);
+    }
+
+    public ArrayList<Tarea> obtenerTareasAtrasadas(String nombre_usuario){
+        ArrayList<Tarea> todasLasTareas = obtenerTareasPorUsuario(nombre_usuario);
+        LocalDate fechaActual = LocalDate.now();
+        ArrayList<Tarea> todasLasTareasPorFinalizar = new ArrayList<>();
+
+        for (Tarea tarea : todasLasTareas) {
+            LocalDate fechaTarea = tarea.getVencimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(ChronoUnit.DAYS.between(fechaActual, fechaTarea) == 1){
+                todasLasTareasPorFinalizar.add(tarea);
+            }
+        }
+        return todasLasTareasPorFinalizar;
     }
 }

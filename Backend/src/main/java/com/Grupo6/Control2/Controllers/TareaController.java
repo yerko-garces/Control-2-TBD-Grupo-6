@@ -66,4 +66,10 @@ public class TareaController {
         System.out.println("entro a cambiar status");
         tareaService.cambiarStatus(id_tarea);
     }
+
+    @GetMapping("/ObtenerAtrasadas/{nombre_usuario}")
+    public ArrayList<Tarea> obtenerTareasAtrasadas(@PathVariable("nombre_usuario") String nombre_usuario){
+        System.out.println(nombre_usuario);
+        return tareaService.obtenerTareasAtrasadas(nombre_usuario);
+    }
 }
