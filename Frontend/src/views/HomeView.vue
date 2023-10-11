@@ -1,45 +1,43 @@
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   data() {
     return {
-      usuario: '',
-      password: '',
-      error: '',
+      usuario: "",
+      password: "",
+      error: "",
     };
   },
   methods: {
     async login() {
       try {
         const res = await axios({
-          method: 'POST',
-          url: 'http://localhost:8090/Usuario/Login',
+          method: "POST",
+          url: "http://localhost:8090/Usuario/Login",
           data: {
             nombre_usuario: this.usuario,
             contrasena: this.password,
           },
-
         });
         if (res.status === 202) {
           const data = res.data;
           console.log(data.id_usuario);
-          localStorage.setItem('nombre_usuario', data.nombre_usuario);
-          localStorage.setItem('id_usuario',data.id_usuario);
+          localStorage.setItem("nombre_usuario", data.nombre_usuario);
+          localStorage.setItem("id_usuario", data.id_usuario);
 
-          this.$router.push('/about');
+          this.$router.push("/about");
         }
       } catch (err) {
         this.$swal({
-          icon: 'error',
-          title: 'Error',
-          text: 'Credenciales invalidas.',
+          icon: "error",
+          title: "Error",
+          text: "Credenciales invalidas.",
         });
       }
     },
   },
 };
-
 </script>
 <template>
   <div>
@@ -48,24 +46,24 @@ export default {
       elevation="15"
       max-width="500"
       rounded="lg"
-      style="margin-top: 40px;"
+      style="margin-top: 40px"
     >
       <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
-            label="Usuario"
-            placeholder="Introduzca su email de usuario"
-            type="input"
-            v-model="usuario"
+          label="Usuario"
+          placeholder="Introduzca su email de usuario"
+          type="input"
+          v-model="usuario"
         ></v-text-field>
       </v-responsive>
 
       <v-responsive class="mx-auto" max-width="400">
         <v-text-field
-            label="Contraseña"
-            placeholder="Introduzca su contraseña"
-            type="password"
-            v-model="password"
+          label="Contraseña"
+          placeholder="Introduzca su contraseña"
+          type="password"
+          v-model="password"
         ></v-text-field>
       </v-responsive>
 

@@ -3,12 +3,15 @@ package com.Grupo6.Control2.Services;
 import com.Grupo6.Control2.models.Tarea;
 import com.Grupo6.Control2.repositories.TareaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 @Service
 public class TareaService {
@@ -52,17 +55,25 @@ public class TareaService {
         tareaRepository.actualizarEstatus(id,false);
     }
 
-    public ArrayList<Tarea> obtenerTareasAtrasadas(String nombre_usuario){
+    public ArrayList<Tarea> obtenerTareasPorVencer(String nombre_usuario) {
         ArrayList<Tarea> todasLasTareas = obtenerTareasPorUsuario(nombre_usuario);
-        LocalDate fechaActual = LocalDate.now();
-        ArrayList<Tarea> todasLasTareasPorFinalizar = new ArrayList<>();
+        ArrayList<Tarea> tareasPorVencer = new ArrayList<>();
 
+        if (todasLasTareas == null) {
+            return null;
+        }
+
+        Date hoy = new Date();
+        Calendar limite = Calendar.getInstance();
+        limite.add(Calendar.DAY_OF_MONTH, 2);
         for (Tarea tarea : todasLasTareas) {
-            LocalDate fechaTarea = tarea.getVencimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if(ChronoUnit.DAYS.between(fechaActual, fechaTarea) == 1){
-                todasLasTareasPorFinalizar.add(tarea);
+            Date fechaVencimiento = tarea.getVencimiento();
+            if (fechaVencimiento.after(hoy) && fechaVencimiento.before(limite.getTime()) && tarea.isStatus()) {
+                tareasPorVencer.add(tarea);
             }
         }
-        return todasLasTareasPorFinalizar;
+        return tareasPorVencer;
     }
+
+
 }

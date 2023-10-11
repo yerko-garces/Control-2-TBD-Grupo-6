@@ -31,10 +31,50 @@
 
 <script>
 import Header from "../components/Header.vue";
+import axios from "axios";
 export default {
   components: {
     Header,
   },
+  data() {
+    return {
+      atrasadas: "",
+    };
+  },
+  mounted() {
+    this.cargarAtrasadas()
+  },
+  methods: {
+    async cargarAtrasadas() {
+       const nombre = localStorage.getItem("nombre_usuario");
+      console.log(nombre);
+      const url = `http://localhost:8090/Tarea/ObtenerAtrasadas/${nombre}`;
+      await axios
+        .get(url)
+        .then((response) => {
+          //this.atrasadas = response.data;
+          this.mostrarAtrasadas(response.data);
+        })
+        .catch((error) => {
+          return null;
+        });
+    },
+    mostrarAtrasadas(tareas) {
+      console.log("entron a mostrar Tareas");
+      console.log(tareas);
+      console.log(Array.isArray(tareas));
+      if (tareas != null) {
+        console.log("tareas no nulas");
+        const texto = `Atención a las siguientes tareas:${tareas.map((tarea) =>`\n${tarea.titulo}`).join("")}`;
+
+        this.$swal({
+          icon: "info",
+          title: "Tareas por acabar",
+          text: texto,
+        })
+      }
+    },
+  }
 };
 </script>
 

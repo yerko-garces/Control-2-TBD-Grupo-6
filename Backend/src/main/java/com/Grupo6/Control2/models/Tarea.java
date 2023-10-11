@@ -6,6 +6,7 @@ public class Tarea {
     private Long id_tarea;
     private String titulo;
     private String descripcion;
+
     private Date vencimiento;
     private Long id_usuario;
     private boolean status;

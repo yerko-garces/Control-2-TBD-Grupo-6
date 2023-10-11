@@ -96,13 +96,9 @@ public class TareaRepositoryImp implements  TareaRepository{
     public List<Tarea> obtenerTareasPorUsuario(Long id_usuario) {
         try (Connection con = sql2o.open()) {
             String query = "SELECT * FROM Tarea WHERE id_usuario = :id_usuario";
-
-            // Ejecuta la consulta y obtén una lista de objetos Tarea
             List<Tarea> tareas = con.createQuery(query)
                     .addParameter("id_usuario", id_usuario)
                     .executeAndFetch(Tarea.class);
-
-            // Itera sobre la lista de tareas y realiza las operaciones necesarias
             for (Tarea tarea : tareas) {
                 System.out.println(tarea.toString());
             }

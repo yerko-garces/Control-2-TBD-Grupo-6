@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -30,6 +31,11 @@ public class TareaController {
     @ResponseBody
     public ResponseEntity<String> crearTarea2(@RequestBody Tarea tarea){
         tarea.setStatus(true);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(tarea.getVencimiento());
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        tarea.setVencimiento(calendar.getTime());
         tareaService.crearTareaSinID(tarea);
         return  ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarea exitosa");
     }
@@ -70,6 +76,6 @@ public class TareaController {
     @GetMapping("/ObtenerAtrasadas/{nombre_usuario}")
     public ArrayList<Tarea> obtenerTareasAtrasadas(@PathVariable("nombre_usuario") String nombre_usuario){
         System.out.println(nombre_usuario);
-        return tareaService.obtenerTareasAtrasadas(nombre_usuario);
+        return tareaService.obtenerTareasPorVencer(nombre_usuario);
     }
 }
