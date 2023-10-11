@@ -35,7 +35,8 @@
 <script>
 import Header from '../components/Header.vue';
 import axios from 'axios';
-import moment from 'moment';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 export default {
     components: {
@@ -62,25 +63,35 @@ export default {
             }
 
         },
-        async Actualizar() {
-            console.log(this.tarea2);
-            this.tarea2.titulo = this.tarea.titulo;
-            this.tarea2.descripcion = this.tarea.descripcion;
-            this.tarea2.vencimiento = new Date(this.tarea.vencimiento);
-            console.log(this.tarea2);
-            if (this.tarea2.titulo && this.tarea2.descripcion && this.tarea2.vencimiento) {
-                try {
-                    const res = await axios.post( `http://localhost:8090/Tarea/ActualizarTarea`, this.tarea2);
-                    if (res.status === 202) {
-                        this.$router.push('/Ver-Tarea');
-                    }
-                } catch (error) {
-                    console.error("Error al crear tarea:", error);
-                }
-            } else {
-                alert("Por favor, complete todos los campos antes de crear la tarea.");
+      async Actualizar() {
+        console.log(this.tarea2);
+        this.tarea2.titulo = this.tarea.titulo;
+        this.tarea2.descripcion = this.tarea.descripcion;
+        this.tarea2.vencimiento = new Date(this.tarea.vencimiento);
+        console.log(this.tarea2);
+        if (this.tarea2.titulo && this.tarea2.descripcion && this.tarea2.vencimiento) {
+          try {
+            const res = await axios.post( "http://localhost:8090/Tarea/ActualizarTarea", this.tarea2);
+            if (res.status === 200) {
+              this.$swal({ // Muestra la alerta de éxito
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Se actualizaron correctamente los datos',
+              }).then(() => {
+                this.$router.push('/Ver-Tarea'); // Redirige al usuario
+              });
             }
-        },
+          } catch (error) {
+            console.error("Error al crear tarea:", error);
+          }
+        } else {
+          this.$swal({ // Muestra una alerta de error
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, complete todos los campos antes de actualizar la tarea.',
+          });
+        }
+      },
         
     },
 };

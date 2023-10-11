@@ -21,9 +21,12 @@ export default {
           },
 
         });
-        console.log(res);
         if (res.status === 202) {
-          localStorage.setItem('nombre_usuario', this.usuario);
+          const data = res.data;
+          console.log(data.id_usuario);
+          localStorage.setItem('nombre_usuario', data.nombre_usuario);
+          localStorage.setItem('id_usuario',data.id_usuario);
+
           this.$router.push('/about');
         }
       } catch (err) {
@@ -104,14 +107,6 @@ export default {
           rel="noopener noreferrer"
           target="_blank"
         >
-          <v-btn
-            block
-            class="mb-8"
-            size="large"
-            color="surface-variant"
-            variant="tonal"
-          >INVITADO
-          </v-btn>
         </a>
       </v-card-text>
     </v-card>

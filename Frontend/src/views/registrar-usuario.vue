@@ -41,8 +41,8 @@
             color="green"
             size="large"
             variant="tonal"
-            to="/registrar-usuario"
             @click="registrar"
+
           >
             Registrar
           </v-btn>
@@ -85,10 +85,8 @@ export default {
           },
 
         });
-        console.log(res);
-        if (res.status === 202) {
-          console.log(res);
-          this.$router.push('/about');
+        if (res.status === 200) {
+          this.$router.push('/');
         }
       } catch (err) {
         this.error = err.response.data;

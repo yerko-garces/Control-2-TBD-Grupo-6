@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/Usuario")
 public class UsuarioController {
@@ -61,14 +61,14 @@ public class UsuarioController {
     }
 
     @PostMapping("/Login")
-    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
 
         Usuario usuario1 = usuarioService.obtenerUsuarioPorNombre(usuario.getNombre_usuario());
         if (usuario1 != null && usuario1.getContrasena().equals(usuario.getContrasena())) {
             System.out.println("Login exitoso");
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login exitoso");
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(usuario1);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login fallido");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
     }

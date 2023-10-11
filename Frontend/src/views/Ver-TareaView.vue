@@ -26,7 +26,7 @@
                 </v-btn>
                 <v-btn block class="mb-1" color="red" background-color="#394049" @click="borrarTarea(tarea);
                 ">
-                  <div>Pitear Tarea</div>
+                  <div>Eliminar Tarea</div>
                 </v-btn>
               </td>
             </tr>

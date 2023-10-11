@@ -17,7 +17,6 @@
         <input v-model="titulo" placeholder="Título" class="custom-input">
         <input v-model="descripcion" placeholder="Descripción" class="custom-input">
         <input v-model="vencimiento" type="date" placeholder="Vencimiento" class="custom-input">
-        <input v-model="id_usuario" placeholder="ID Usuario" class="custom-input">
       </div>
       <div class="input-container">
         <!-- Tus inputs aquí -->
@@ -51,9 +50,9 @@ export default {
   },
   methods: {
     async crearTarea() {
-      console.log(this.titulo + this.descripcion + this.vencimiento + this.id_usuario);
-      if (this.titulo && this.descripcion && this.vencimiento && this.id_usuario) {
+      if (this.titulo && this.descripcion && this.vencimiento ) {
         try {
+          console.log(localStorage.getItem('id_usuario'));
           const res = await axios({
             method: 'POST',
             url: 'http://localhost:8090/Tarea/CrearTarea2',
@@ -61,7 +60,7 @@ export default {
               titulo: this.titulo,
               descripcion: this.descripcion,
               vencimiento: this.vencimiento,
-              id_usuario: this.id_usuario,
+              id_usuario: localStorage.getItem('id_usuario'),
             },
 
           });
